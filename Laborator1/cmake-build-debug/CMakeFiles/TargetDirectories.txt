@@ -1,3 +1,3 @@
-C:/C#/Training/Object Oriented Programming/Laborator1/cmake-build-debug/CMakeFiles/Laborator1.dir
-C:/C#/Training/Object Oriented Programming/Laborator1/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/C#/Training/Object Oriented Programming/Laborator1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/C#/Training/Object Oriented Programming/Laborator1/Laborator1/cmake-build-debug/CMakeFiles/Laborator1.dir
+C:/C#/Training/Object Oriented Programming/Laborator1/Laborator1/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/C#/Training/Object Oriented Programming/Laborator1/Laborator1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
