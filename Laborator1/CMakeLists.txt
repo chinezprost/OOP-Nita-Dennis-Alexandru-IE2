@@ -3,4 +3,4 @@ project(Laborator1)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Laborator1 main2.cpp)
+add_executable(Laborator1 main.cpp)

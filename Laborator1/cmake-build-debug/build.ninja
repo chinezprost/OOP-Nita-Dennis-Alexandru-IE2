@@ -49,8 +49,8 @@ cmake_ninja_workdir = C$:/C#/Training/Object$ Oriented$ Programming/Laborator1/L
 
 build cmake_object_order_depends_target_Laborator1: phony || CMakeFiles/Laborator1.dir
 
-build CMakeFiles/Laborator1.dir/main2.cpp.obj: CXX_COMPILER__Laborator1_Debug C$:/C#/Training/Object$ Oriented$ Programming/Laborator1/Laborator1/main2.cpp || cmake_object_order_depends_target_Laborator1
-  DEP_FILE = CMakeFiles\Laborator1.dir\main2.cpp.obj.d
+build CMakeFiles/Laborator1.dir/main.cpp.obj: CXX_COMPILER__Laborator1_Debug C$:/C#/Training/Object$ Oriented$ Programming/Laborator1/Laborator1/main.cpp || cmake_object_order_depends_target_Laborator1
+  DEP_FILE = CMakeFiles\Laborator1.dir\main.cpp.obj.d
   FLAGS = -g -std=gnu++14
   OBJECT_DIR = CMakeFiles\Laborator1.dir
   OBJECT_FILE_DIR = CMakeFiles\Laborator1.dir
@@ -63,7 +63,7 @@ build CMakeFiles/Laborator1.dir/main2.cpp.obj: CXX_COMPILER__Laborator1_Debug C$
 #############################################
 # Link the executable Laborator1.exe
 
-build Laborator1.exe: CXX_EXECUTABLE_LINKER__Laborator1_Debug CMakeFiles/Laborator1.dir/main2.cpp.obj
+build Laborator1.exe: CXX_EXECUTABLE_LINKER__Laborator1_Debug CMakeFiles/Laborator1.dir/main.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\Laborator1.dir
