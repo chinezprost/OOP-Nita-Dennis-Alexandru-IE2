@@ -2,15 +2,15 @@
 class Student
 {
 private:
-	char name[255] = "\0";
-	struct Grades
-	{
-		float Mathematics = -1;
-		float English = -1;
-		float History = -1;
-	}grades;
+	char name[25];
+	
+	float Mathematics = -1;
+	float English = -1;
+	float History = -1;
+	
 
 public:
+	Student(const char _name[], float _Mathematics, float _English, float _History);
 	void SetName(char value[]);
 	char* GetName();
 

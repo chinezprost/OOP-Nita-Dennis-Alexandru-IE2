@@ -2,6 +2,15 @@
 #include <cstring>
 
 
+Student::Student(const char _name[], float _Mathematics, float _English, float _History)
+{
+	strcpy_s(this->name, _name);
+	this->Mathematics = _Mathematics;
+	this->English = _English;
+	this->History = _History;
+}
+
+
 void Student::SetName(char _value[])
 {
 	strcpy_s(this->name, _value);
@@ -16,15 +25,15 @@ char* Student::GetName()
 
 float Student::GetGradeMath()
 {
-	return this->grades.Mathematics;
+	return this->Mathematics;
 }
 float Student::GetGradeEnglish()
 {
-	return this->grades.English;
+	return this->English;
 }
 float Student::GetGradeHistory()
 {
-	return this->grades.History;
+	return this->History;
 }
 
 void Student::SetGradeMath(float _value)
@@ -32,27 +41,24 @@ void Student::SetGradeMath(float _value)
 	if (_value < 1 || _value > 10)
 		return;
 
-	grades.Mathematics = _value;
+	this->Mathematics = _value;
 
 }
 void Student::SetGradeEnglish(float _value) {
 	if (_value < 1 || _value > 10)
 		return;
 
-	grades.English = _value;
+	this->English = _value;
 }
 void Student::SetGradeHistory(float _value)
 {
 	if (_value < 1 || _value > 10)
 		return;
 
-	grades.History = _value;
+	this->History = _value;
 }
 
 float Student::GetAverageGrade()
 {
-	return 1.0 * (
-		this->grades.Mathematics +
-		this->grades.History +
-		this->grades.English) / 3;
+	return 1.0 * (this->Mathematics + this->History + this->English) / 3;
 }
