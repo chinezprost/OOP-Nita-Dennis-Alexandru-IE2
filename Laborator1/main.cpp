@@ -14,7 +14,7 @@ list<string>::iterator i;
 char inputString[100];
 
 int convertToInt(string input)
-{
+{3
     int number = 0, p = 1;
     for(int x = 1; x <= input.size(); x++)
     {
