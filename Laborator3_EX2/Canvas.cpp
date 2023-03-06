@@ -7,9 +7,20 @@ Canvas::Canvas(int width, int height)
 {
 	this->width = width;
 	this->height = height;
+	this->canvasMatrix = (char**)malloc((height+1) * sizeof(char*));
+	for (int i = 0; i < height+1; i++)
+		this->canvasMatrix[i] = (char*)malloc((width+1) * sizeof(char));
+
 	for (int i = 1; i <= width; i++)
 		for (int j = 1; j <= height; j++)
 			this->canvasMatrix[i][j] = 32;
+}
+
+Canvas::~Canvas()
+{
+	for (int i = 0; i < height+1; i++)
+		free(this->canvasMatrix[i]);
+	free(this->canvasMatrix);
 }
 
 void Canvas::Clear()

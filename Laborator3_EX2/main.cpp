@@ -9,14 +9,15 @@ using namespace std;
 
 int main()
 {
+	int n;
 	Canvas canvas(64, 64);
 	canvas.DrawRect(2, 5, 5, 2, '1');
 	canvas.FillRect(8, 5, 10, 2, '1');
 	canvas.DrawCircle(21, 21, 4, '1');
 	canvas.FillCircle(11, 11, 2, '1');
 	canvas.Print();
-	Sleep(3000);
-	system("CLS");
+	//Sleep(3000);
+	//system("CLS");
 	canvas.Clear();
 	//canvas.DrawLine(1, 1, 32, 32, '*');
 	//canvas.DrawLine(0, 14, 23, 25, '*');
