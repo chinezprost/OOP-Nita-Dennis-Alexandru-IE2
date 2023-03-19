@@ -26,6 +26,8 @@ public:
     bool operator <= (const Number& number);
     void operator += (const Number& number);
 
+    char operator[] (int);
+
     friend Number operator + (const Number& member, const Number& number);
     friend Number operator - (const Number& member, const Number& number);
 

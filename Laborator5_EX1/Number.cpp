@@ -84,6 +84,11 @@ Number::Number(Number&& _source)
 	delete[] _source.value;
 }
 
+char Number::operator[] (int index)
+{
+	return this->value[index];
+}
+
 void Number::operator += (const Number& number)
 {
 	int initialBase = this->base;
