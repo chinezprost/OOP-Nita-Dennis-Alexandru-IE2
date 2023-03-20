@@ -59,7 +59,7 @@ Number::Number(int _value) {
 	auto valueNumberOfDigits = getNumberOfDigitsOfInt(_value);
 	this->value = new char[valueNumberOfDigits + 1];
 	this->base = 10;
-	for (int i = 0; i < valueNumberOfDigits; i++)
+	for (int i = valueNumberOfDigits-1; i >= 0; i--)
 	{
 		this->value[i] = (_value % 10) + '0';
 		_value /= 10;
@@ -79,9 +79,8 @@ Number::Number(const Number& _source)
 Number::Number(Number&& _source)
 {
 	this->base = _source.base;
-	this->value = new char[strlen(_source.value) + 1];
-	strcpy(this->value, _source.value);
-	delete[] _source.value;
+	this->value = _source.value;
+	_source.value = nullptr;
 }
 
 char Number::operator[] (int index)
@@ -89,44 +88,43 @@ char Number::operator[] (int index)
 	return this->value[index];
 }
 
-void Number::operator += (const Number& number)
+Number& Number::operator += (const Number& number)
 {
 	int initialBase = this->base;
 	int value1 = convertToBase10(this->value, this->base);
 	int value2 = convertToBase10(number.value, number.base);
 	int returnValue = value1 + value2;
 	this->value = convertFromBase10(returnValue, initialBase);
-
+	return (*this);
 }
 
 bool Number::operator == (const Number& number)
 {
 	char* newValue = new char[100];
-	if (this->base > number.base)
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
-	else
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
-
-	if (strcmp(newValue, this->value) == 0)
+	strcpy(newValue, convertFromBase10(convertToBase10(number.value, number.base), this->base));
+	if (strlen(this->value) == strlen(number.value))
 	{
 		delete[] newValue;
 		return true;
 	}
-	else
-	{
-		delete[] newValue;
-		return false;
-	}
-
+	delete[] newValue;
+	return false;
 }
 
 bool Number::operator >= (const Number& number)
 {
 	char* newValue = new char[100];
-	if (this->base > number.base)
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
-	else
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
+	strcpy(newValue, convertFromBase10(convertToBase10(number.value, number.base), this->base));
+	if (strlen(this->value) >= strlen(number.value))
+	{
+		delete[] newValue;
+		return true;
+	}
+	else if (strlen(this->value) < strlen(number.value))
+	{
+		delete[] newValue;
+		return false;
+	}
 
 	if (strcmp(this->value, newValue) >= 0)
 	{
@@ -138,16 +136,22 @@ bool Number::operator >= (const Number& number)
 		delete[] newValue;
 		return false;
 	}
-
 }
 
 bool Number::operator > (const Number& number)
 {
 	char* newValue = new char[100];
-	if (this->base > number.base)
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
-	else
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
+	strcpy(newValue, convertFromBase10(convertToBase10(number.value, number.base), this->base));
+	if (strlen(this->value) > strlen(number.value))
+	{
+		delete[] newValue;
+		return true;
+	}
+	else if(strlen(this->value) < strlen(number.value))
+	{
+		delete[] newValue;
+		return false;
+	}
 
 	if (strcmp(this->value, newValue) > 0)
 	{
@@ -165,10 +169,17 @@ bool Number::operator > (const Number& number)
 bool Number::operator < (const Number& number)
 {
 	char* newValue = new char[100];
-	if (this->base > number.base)
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
-	else
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
+	strcpy(newValue, convertFromBase10(convertToBase10(number.value, number.base), this->base));
+	if (strlen(this->value) < strlen(number.value))
+	{
+		delete[] newValue;
+		return true;
+	}
+	else if (strlen(this->value) > strlen(number.value))
+	{
+		delete[] newValue;
+		return false;
+	}
 
 	if (strcmp(this->value, newValue) < 0)
 	{
@@ -180,16 +191,22 @@ bool Number::operator < (const Number& number)
 		delete[] newValue;
 		return false;
 	}
-
 }
 
 bool Number::operator <= (const Number& number)
 {
 	char* newValue = new char[100];
-	if (this->base > number.base)
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
-	else
-		char* newValue = convertFromBase10(convertToBase10(number.value, number.base), this->base);
+	strcpy(newValue, convertFromBase10(convertToBase10(number.value, number.base), this->base));
+	if (strlen(this->value) <= strlen(number.value))
+	{
+		delete[] newValue;
+		return true;
+	}
+	else if (strlen(this->value) > strlen(number.value))
+	{
+		delete[] newValue;
+		return false;
+	}
 
 	if (strcmp(this->value, newValue) <= 0)
 	{
@@ -201,7 +218,6 @@ bool Number::operator <= (const Number& number)
 		delete[] newValue;
 		return false;
 	}
-
 }
 
 Number& Number::operator--(int)
@@ -236,9 +252,9 @@ Number& Number::operator = (int intValue)
 {
 	delete[] this->value;
 	auto valueNumberOfDigits = getNumberOfDigitsOfInt(intValue);
-	this->value = new char[valueNumberOfDigits+1];
+	this->value = new char[valueNumberOfDigits + 1];
 	this->base = 10;
-	for (int i = 0; i < valueNumberOfDigits; i++)
+	for (int i = valueNumberOfDigits-1; i >= 0; i--)
 	{
 		this->value[i] = (intValue % 10) + '0';
 		intValue /= 10;
@@ -262,8 +278,7 @@ Number operator - (const Number& member, const Number& number)
 
 	decimalValue1 -= decimalValue2;
 	auto newValue = convertFromBase10(decimalValue1, maxBase);
-	auto returnType = Number(newValue, maxBase);
-	return returnType;
+	return Number(newValue, maxBase);
 }
 
 Number operator + (const Number& member, const Number& number)
@@ -274,8 +289,7 @@ Number operator + (const Number& member, const Number& number)
 
 	decimalValue1 += decimalValue2;
 	char* newValue = convertFromBase10(decimalValue1, maxBase);
-	auto returnType = Number(newValue, maxBase);
-	return returnType;
+	return Number(newValue, maxBase);
 }
 
 int Number::GetBase()

@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdio>
 #include <algorithm>
+#include <math.h>
 class Number
 {
 private:
@@ -24,7 +25,8 @@ public:
     bool operator > (const Number& number);
     bool operator < (const Number& number);
     bool operator <= (const Number& number);
-    void operator += (const Number& number);
+    Number& operator += (const Number& number);
+    Number& operator -= (const Number& number);
 
     char operator[] (int);
 
